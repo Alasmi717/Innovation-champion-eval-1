@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Innovation Champion — 180° Evaluation</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --navy:#0d0a2e;
+  --navy2:#120e38;
+  --navy3:#1a1448;
+  --purple:#7b2ff7;
+  --purple2:#9b4dff;
+  --purple3:#6a1fd6;
+  --purple-pill:#7c3aed;
+  --purple-pill-bright:#8b5cf6;
+  --purple-glow:rgba(123,47,247,0.25);
+  --purple-glow2:rgba(139,92,246,0.15);
+  --pink:#d946ef;
+  --white:#ffffff;
+  --off-white:#e8e4ff;
+  --muted:#9b8ec4;
+  --muted2:#6b5fa0;
+  --border:rgba(123,47,247,0.25);
+  --border2:rgba(139,92,246,0.4);
+  --text:#f0ecff;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--navy);
+  color:var(--text);
+  font-family:'Nunito',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════
+   HERO / HEADER
+══════════════════════════════ */
+.hero{
+  position:relative;
+  background:linear-gradient(160deg, #0d0a2e 0%, #1a0a4e 50%, #0f0830 100%);
+  padding:3rem 5% 2.5rem;
+  overflow:hidden;
+  border-bottom:1px solid var(--border2);
+}
+
+/* grid lines */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(123,47,247,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(123,47,247,0.08) 1px, transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;
+}
+
+/* top glow orb */
+.hero-orb{
+  position:absolute;
+  top:-120px;right:-60px;
+  width:420px;height:420px;
+  background:radial-gradient(circle, rgba(123,47,247,0.35) 0%, rgba(217,70,239,0.08) 45%, transparent 70%);
+  pointer-events:none;
+  animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.08);opacity:0.75}
+}
+
+.hero-inner{
+  position:relative;
+  display:flex;align-items:center;gap:2rem;flex-wrap:wrap;
+  max-width:900px;
+}
+
+.hero-bulb{
+  font-size:4rem;
+  filter:drop-shadow(0 0 20px rgba(123,47,247,0.8)) drop-shadow(0 0 40px rgba(217,70,239,0.4));
+  animation:bulb-glow 3s ease-in-out infinite;
+  flex-shrink:0;
+}
+@keyframes bulb-glow{
+  0%,100%{filter:drop-shadow(0 0 16px rgba(123,47,247,0.9)) drop-shadow(0 0 32px rgba(217,70,239,0.4))}
+  50%{filter:drop-shadow(0 0 28px rgba(139,92,246,1)) drop-shadow(0 0 55px rgba(217,70,239,0.7))}
+}
+
+.hero-text{}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  background:rgba(123,47,247,0.2);
+  border:1px solid rgba(139,92,246,0.4);
+  border-radius:99px;
+  padding:0.25rem 0.9rem;
+  font-size:0.7rem;font-weight:800;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--purple-pill-bright);
+  margin-bottom:0.85rem;
+}
+.hero-tag::before{content:'●';font-size:0.45rem;color:var(--purple-pill-bright)}
+
+.hero-title{
+  font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:900;line-height:1.05;
+  color:var(--white);
+  margin-bottom:0.5rem;
+}
+.hero-title span{
+  background:linear-gradient(90deg,#a78bfa,#e879f9);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+.hero-sub{
+  font-size:0.88rem;color:var(--muted);
+  line-height:1.65;max-width:520px;
+  margin-bottom:1.25rem;
+}
+
+.hero-pills{
+  display:flex;flex-wrap:wrap;gap:0.6rem;
+}
+.hero-pill{
+  background:var(--purple-pill);
+  color:var(--white);
+  font-size:0.75rem;font-weight:700;
+  padding:0.45rem 1.1rem;border-radius:99px;
+  box-shadow:0 2px 12px rgba(123,47,247,0.4);
+}
+
+/* brand footer */
+.hero-brand{
+  position:absolute;bottom:1.1rem;right:1.5rem;
+  font-size:0.7rem;font-weight:800;letter-spacing:0.08em;
+  color:var(--purple-pill-bright);opacity:0.7;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.hero-brand::before{content:'منافع';font-family:'Tajawal',sans-serif;font-size:0.85rem}
+
+/* ══════════════════════════════
+   EVALUATOR SWITCHER
+══════════════════════════════ */
+.eval-strip{
+  background:var(--navy2);
+  border-bottom:1px solid var(--border);
+  padding:0.9rem 5%;
+  display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;
+}
+.eval-strip-lbl{
+  font-size:0.68rem;font-weight:800;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--muted2);margin-right:0.25rem;
+}
+.eval-pill{
+  background:transparent;
+  border:1.5px solid rgba(123,47,247,0.35);
+  color:var(--muted);
+  font-family:'Nunito',sans-serif;
+  font-size:0.8rem;font-weight:700;
+  padding:0.42rem 1.2rem;border-radius:99px;
+  cursor:pointer;transition:all 0.18s;
+}
+.eval-pill:hover{border-color:var(--purple2);color:var(--purple2)}
+.eval-pill.active{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  border-color:transparent;
+  color:var(--white);
+  box-shadow:0 2px 16px rgba(123,47,247,0.45);
+}
+
+/* ══════════════════════════════
+   LAYOUT
+══════════════════════════════ */
+.form-wrap{
+  max-width:880px;margin:0 auto;
+  padding:2.5rem 5% 6rem;
+}
+
+/* ══════════════════════════════
+   PROGRESS
+══════════════════════════════ */
+.prog-row{
+  display:flex;align-items:center;gap:1rem;margin-bottom:2rem;
+}
+.prog-track{
+  flex:1;height:4px;
+  background:rgba(123,47,247,0.15);
+  border-radius:99px;overflow:hidden;
+}
+.prog-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--purple3),var(--pink));
+  border-radius:99px;
+  transition:width 0.55s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 0 8px rgba(217,70,239,0.5);
+}
+.prog-txt{
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;
+}
+
+/* ══════════════════════════════
+   META FIELDS
+══════════════════════════════ */
+.meta-card{
+  background:linear-gradient(135deg,var(--navy2),var(--navy3));
+  border:1px solid var(--border2);
+  border-radius:16px;
+  padding:1.75rem;
+  margin-bottom:1.75rem;
+  position:relative;overflow:hidden;
+}
+.meta-card::before{
+  content:'';position:absolute;top:-50px;right:-50px;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(123,47,247,0.12) 0%,transparent 70%);
+  pointer-events:none;
+}
+.meta-card-title{
+  font-size:0.68rem;font-weight:800;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--purple-pill-bright);
+  margin-bottom:1.1rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.meta-card-title::before{
+  content:'';display:block;
+  width:16px;height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+  border-radius:99px;
+}
+.meta-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:1rem 1.5rem;
+}
+@media(max-width:540px){.meta-grid{grid-template-columns:1fr}}
+
+.f-lbl{
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.13em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.35rem;display:block;
+}
+.f-inp{
+  width:100%;
+  background:rgba(13,10,46,0.7);
+  border:1px solid rgba(123,47,247,0.3);
+  border-radius:10px;
+  color:var(--text);
+  font-family:'Nunito',sans-serif;
+  font-size:0.87rem;font-weight:600;
+  padding:0.6rem 0.95rem;
+  outline:none;
+  transition:border-color 0.18s,box-shadow 0.18s;
+}
+.f-inp:focus{
+  border-color:var(--purple2);
+  box-shadow:0 0 0 3px rgba(123,47,247,0.2);
+}
+select.f-inp{
+  appearance:none;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%239b8ec4' d='M5 6L0 0h10z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 1rem center;
+  padding-right:2.4rem;
+}
+select.f-inp option{background:#1a1448}
+
+/* ══════════════════════════════
+   EVALUATION DIMENSIONS
+══════════════════════════════ */
+.dim-card{
+  background:linear-gradient(160deg,var(--navy2) 0%,var(--navy3) 100%);
+  border:1px solid var(--border);
+  border-radius:16px;
+  margin-bottom:1.4rem;
+  overflow:hidden;
+  transition:border-color 0.2s,box-shadow 0.2s;
+  opacity:0;
+  animation:fadeUp 0.5s ease forwards;
+}
+.dim-card:hover{
+  border-color:rgba(139,92,246,0.5);
+  box-shadow:0 4px 30px rgba(123,47,247,0.12);
+}
+.dim-card:nth-child(1){animation-delay:0.05s}
+.dim-card:nth-child(2){animation-delay:0.1s}
+.dim-card:nth-child(3){animation-delay:0.15s}
+.dim-card:nth-child(4){animation-delay:0.2s}
+.dim-card:nth-child(5){animation-delay:0.25s}
+.dim-card:nth-child(6){animation-delay:0.3s}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.dim-head{
+  display:flex;align-items:center;gap:0.9rem;
+  padding:1.1rem 1.4rem;
+  cursor:pointer;user-select:none;
+  transition:background 0.15s;
+}
+.dim-head:hover{background:rgba(123,47,247,0.06)}
+
+.dim-num{
+  width:36px;height:36px;flex-shrink:0;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;font-weight:900;color:var(--white);
+  box-shadow:0 2px 10px rgba(123,47,247,0.4);
+}
+.dim-info{flex:1}
+.dim-title{
+  font-size:1rem;font-weight:800;
+  color:var(--white);line-height:1.2;
+}
+.dim-sub{font-size:0.72rem;color:var(--muted);margin-top:0.15rem}
+.dim-icon{font-size:1.2rem}
+.dim-chevron{
+  font-size:0.65rem;color:var(--muted2);
+  transition:transform 0.25s;
+  margin-left:0.25rem;
+}
+.dim-card.open .dim-chevron{transform:rotate(180deg)}
+.dim-score-badge{
+  font-size:0.7rem;font-weight:700;
+  padding:0.2rem 0.7rem;border-radius:99px;
+  background:rgba(123,47,247,0.15);
+  border:1px solid rgba(139,92,246,0.3);
+  color:var(--purple-pill-bright);
+  white-space:nowrap;
+}
+
+.dim-body{
+  display:none;
+  border-top:1px solid var(--border);
+  padding:0 1.4rem 1.5rem;
+}
+.dim-card.open .dim-body{display:block}
+
+/* ══════════════════════════════
+   CRITERION / QUESTION
+══════════════════════════════ */
+.crit-block{
+  padding:1.2rem 0;
+  border-bottom:1px solid rgba(123,47,247,0.1);
+}
+.crit-block:last-child{border-bottom:none;padding-bottom:0}
+
+.crit-q{
+  font-size:0.87rem;font-weight:700;
+  color:var(--off-white);line-height:1.55;
+  margin-bottom:0.85rem;
+}
+.crit-note{
+  font-size:0.74rem;color:var(--muted);
+  font-style:italic;margin-top:-0.5rem;margin-bottom:0.85rem;
+  line-height:1.5;
+}
+
+/* ── STAR RATING ── */
+.stars-wrap{display:flex;flex-direction:column;gap:0.35rem}
+.star-row-ui{
+  display:flex;flex-direction:row-reverse;
+  justify-content:flex-end;gap:0.2rem;
+}
+.star-row-ui input{display:none}
+.star-row-ui label{
+  font-size:1.65rem;
+  cursor:pointer;
+  color:rgba(123,47,247,0.25);
+  transition:color 0.12s,transform 0.1s,filter 0.12s;
+  line-height:1;
+}
+.star-row-ui label:hover,
+.star-row-ui label:hover ~ label{
+  color:#f5c518;
+  transform:scale(1.2);
+  filter:drop-shadow(0 0 6px rgba(245,197,24,0.6));
+}
+.star-row-ui input:checked ~ label{
+  color:#f5c518;
+  filter:drop-shadow(0 0 4px rgba(245,197,24,0.4));
+}
+.star-scale-lbl{
+  display:flex;justify-content:space-between;
+  font-size:0.62rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--muted2);
+  padding:0 0.1rem;
+}
+
+/* ── TEXTAREA ── */
+.crit-textarea{
+  width:100%;min-height:80px;
+  background:rgba(13,10,46,0.6);
+  border:1px solid rgba(123,47,247,0.25);
+  border-radius:10px;
+  color:var(--text);
+  font-family:'Nunito',sans-serif;
+  font-size:0.85rem;font-weight:500;
+  padding:0.7rem 1rem;
+  outline:none;resize:vertical;line-height:1.6;
+  transition:border-color 0.18s,box-shadow 0.18s;
+}
+.crit-textarea:focus{
+  border-color:var(--purple2);
+  box-shadow:0 0 0 3px rgba(123,47,247,0.15);
+}
+.crit-textarea::placeholder{color:var(--muted2)}
+
+/* ══════════════════════════════
+   OVERALL RATING CARD
+══════════════════════════════ */
+.overall-card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#1e0a5e 0%,#2a0f7a 50%,#1a0a4e 100%);
+  border:1px solid rgba(139,92,246,0.5);
+  border-radius:16px;
+  padding:1.75rem;
+  margin-bottom:1.75rem;
+  opacity:0;animation:fadeUp 0.5s 0.32s ease forwards;
+}
+.overall-card::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:220px;height:220px;
+  background:radial-gradient(circle,rgba(217,70,239,0.2) 0%,transparent 65%);
+  pointer-events:none;
+}
+.overall-card::after{
+  content:'180°';
+  position:absolute;right:1.5rem;bottom:-0.5rem;
+  font-size:6rem;font-weight:900;
+  color:rgba(255,255,255,0.04);
+  line-height:1;pointer-events:none;
+  font-family:'Nunito',sans-serif;
+}
+.overall-title{
+  font-size:1rem;font-weight:800;color:var(--white);
+  margin-bottom:0.3rem;
+  display:flex;align-items:center;gap:0.6rem;
+}
+.overall-title::before{content:'★';color:#f5c518;font-size:0.9rem}
+.overall-sub{font-size:0.8rem;color:var(--muted);margin-bottom:1.25rem;line-height:1.55}
+.overall-btns{display:flex;gap:0.5rem;flex-wrap:wrap}
+.o-btn{
+  background:rgba(123,47,247,0.15);
+  border:1.5px solid rgba(123,47,247,0.3);
+  color:var(--muted);
+  font-family:'Nunito',sans-serif;
+  font-size:0.78rem;font-weight:700;
+  padding:0.5rem 1.1rem;border-radius:10px;
+  cursor:pointer;transition:all 0.15s;
+  display:flex;align-items:center;gap:0.4rem;
+}
+.o-btn:hover{border-color:var(--purple2);color:var(--purple-pill-bright)}
+.o-btn.sel{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  border-color:transparent;color:var(--white);
+  box-shadow:0 2px 16px rgba(123,47,247,0.45);
+}
+.o-btn .star-ico{color:#f5c518}
+
+/* ══════════════════════════════
+   OPEN FEEDBACK CARD
+══════════════════════════════ */
+.open-card{
+  background:linear-gradient(160deg,var(--navy2),var(--navy3));
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.75rem;
+  margin-bottom:1.75rem;
+  opacity:0;animation:fadeUp 0.5s 0.36s ease forwards;
+}
+.open-card-title{
+  font-size:0.68rem;font-weight:800;
+  letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--purple-pill-bright);
+  margin-bottom:1.25rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.open-card-title::before{
+  content:'';display:block;
+  width:16px;height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--pink));
+}
+.open-qs{display:flex;flex-direction:column;gap:1.1rem}
+.open-q-lbl{
+  font-size:0.87rem;font-weight:700;
+  color:var(--off-white);margin-bottom:0.5rem;
+  line-height:1.5;
+}
+
+/* ══════════════════════════════
+   SUBMIT ZONE
+══════════════════════════════ */
+.submit-zone{
+  display:flex;align-items:flex-start;
+  justify-content:space-between;gap:1.5rem;flex-wrap:wrap;
+  background:linear-gradient(135deg,var(--navy2),var(--navy3));
+  border:1px solid var(--border2);
+  border-radius:16px;
+  padding:1.75rem;
+  opacity:0;animation:fadeUp 0.5s 0.4s ease forwards;
+}
+.submit-note{
+  font-size:0.8rem;color:var(--muted);
+  line-height:1.65;max-width:400px;
+}
+.submit-note strong{color:var(--off-white);font-weight:700}
+.submit-btn{
+  background:linear-gradient(135deg,var(--purple),var(--purple2));
+  color:var(--white);border:none;
+  font-family:'Nunito',sans-serif;
+  font-size:0.88rem;font-weight:800;
+  padding:0.9rem 2.2rem;border-radius:12px;
+  cursor:pointer;letter-spacing:0.04em;
+  display:flex;align-items:center;gap:0.6rem;
+  white-space:nowrap;
+  box-shadow:0 4px 20px rgba(123,47,247,0.4);
+  transition:transform 0.15s,box-shadow 0.15s,filter 0.15s;
+}
+.submit-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 28px rgba(123,47,247,0.6);
+  filter:brightness(1.1);
+}
+.submit-btn:active{transform:translateY(0)}
+
+/* ══════════════════════════════
+   SUCCESS
+══════════════════════════════ */
+.success{
+  display:none;text-align:center;
+  padding:5rem 2rem 4rem;
+}
+.success-orb{
+  width:90px;height:90px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 2rem;
+  font-size:2.2rem;
+  box-shadow:0 0 40px rgba(123,47,247,0.5),0 0 80px rgba(217,70,239,0.2);
+  animation:pulse 2s ease-in-out infinite;
+}
+.success-title{
+  font-size:2rem;font-weight:900;color:var(--white);margin-bottom:0.75rem;
+}
+.success-msg{
+  font-size:0.9rem;color:var(--muted);max-width:460px;
+  margin:0 auto;line-height:1.7;
+}
+
+/* ══════════════════════════════
+   META CARD ANIMATION
+══════════════════════════════ */
+.meta-card{opacity:0;animation:fadeUp 0.5s 0.02s ease forwards}
+.eval-strip .eval-pill{opacity:0;animation:fadeUp 0.4s ease forwards}
+.eval-strip .eval-pill:nth-child(2){animation-delay:0.05s}
+.eval-strip .eval-pill:nth-child(3){animation-delay:0.1s}
+.eval-strip .eval-pill:nth-child(4){animation-delay:0.15s}
+
+@media(max-width:600px){
+  .hero-inner{flex-direction:column;gap:1rem}
+  .hero-bulb{font-size:3rem}
+  .submit-zone{flex-direction:column}
+  .overall-btns{flex-direction:column}
+  .o-btn{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<header class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-inner">
+    <div class="hero-bulb">💡</div>
+    <div class="hero-text">
+      <div class="hero-tag">Manafa Innovation Department</div>
+      <h1 class="hero-title">Innovation Champion<br><span>180° Evaluation</span></h1>
+      <p class="hero-sub">A structured evaluation model to assess the Champion's contribution, ownership, collaboration, commitment, and effectiveness in driving their assigned innovation project.</p>
+      <div class="hero-pills">
+        <span class="hero-pill">Embed Innovation</span>
+        <span class="hero-pill">Drive Collaboration</span>
+        <span class="hero-pill">Capture Challenges</span>
+        <span class="hero-pill">Enhance Quality</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-brand">manafa</div>
+</header>
+
+<!-- ══ EVALUATOR STRIP ══ -->
+<div class="eval-strip">
+  <span class="eval-strip-lbl">I am evaluating as</span>
+  <button class="eval-pill active" onclick="setEval(this,'innovation')">🏛 Innovation Department (Partner)</button>
+  <button class="eval-pill" onclick="setEval(this,'manager')">👤 Direct Manager</button>
+</div>
+
+<!-- ══ FORM ══ -->
+<div class="form-wrap">
+<form id="mainForm" novalidate>
+
+  <!-- PROGRESS -->
+  <div class="prog-row">
+    <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+    <div class="prog-txt" id="progTxt">0 / 5 dimensions rated</div>
+  </div>
+
+  <!-- META -->
+  <div class="meta-card">
+    <div class="meta-card-title">Evaluation Details</div>
+    <div class="meta-grid">
+      <div>
+        <label class="f-lbl" for="f_champ">Champion's Name *</label>
+        <input class="f-inp" id="f_champ" type="text" placeholder="Full name" required/>
+      </div>
+      <div>
+        <label class="f-lbl" for="f_evaluator">Evaluator Name *</label>
+        <input class="f-inp" id="f_evaluator" type="text" placeholder="Full name" required/>
+      </div>
+      <div>
+        <label class="f-lbl" for="f_project">Innovation Project Name</label>
+        <input class="f-inp" id="f_project" type="text" placeholder="Project title"/>
+      </div>
+      <div>
+        <label class="f-lbl" for="f_dept">Department</label>
+        <input class="f-inp" id="f_dept" type="text" placeholder="e.g. Operations, HR, Finance"/>
+      </div>
+      <div>
+        <label class="f-lbl" for="f_cycle">Program Cycle</label>
+        <select class="f-inp" id="f_cycle">
+          <option value="">Select cycle…</option>
+          <option>Q1 2025 — Cycle 1</option>
+          <option>Q2 2025 — Cycle 2</option>
+          <option>Q3 2025 — Cycle 3</option>
+          <option>Q4 2025 — Cycle 4</option>
+        </select>
+      </div>
+      <div>
+        <label class="f-lbl" for="f_stage">Project Stage</label>
+        <select class="f-inp" id="f_stage">
+          <option value="">Select stage…</option>
+          <option>Discovery & Problem Definition</option>
+          <option>Ideation & Concept Development</option>
+          <option>Prototype & Validation</option>
+          <option>Pilot & Implementation</option>
+          <option>Scale & Handover</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════ DIMENSION 1: PROJECT OWNERSHIP ═══════ -->
+  <div class="dim-card open" id="d1">
+    <div class="dim-head" onclick="toggleDim('d1')">
+      <div class="dim-num">01</div>
+      <div class="dim-info">
+        <div class="dim-title">Project Ownership &amp; Commitment</div>
+        <div class="dim-sub">Accountability, proactivity, and dedication to the project</div>
+      </div>
+      <div class="dim-icon">🎯</div>
+      <span class="dim-score-badge" id="badge-d1">Not rated</span>
+      <span class="dim-chevron">▲</span>
+    </div>
+    <div class="dim-body">
+
+      <div class="crit-block">
+        <div class="crit-q">Takes full ownership of the project without waiting to be directed.</div>
+        <div class="stars-wrap" data-dim="d1">
+          <div class="star-row-ui">
+            <input type="radio" name="po1" id="po1_5" value="5"><label for="po1_5" title="Outstanding">★</label>
+            <input type="radio" name="po1" id="po1_4" value="4"><label for="po1_4" title="Above Expectations">★</label>
+            <input type="radio" name="po1" id="po1_3" value="3"><label for="po1_3" title="Meets Expectations">★</label>
+            <input type="radio" name="po1" id="po1_2" value="2"><label for="po1_2" title="Below Expectations">★</label>
+            <input type="radio" name="po1" id="po1_1" value="1"><label for="po1_1" title="Needs Improvement">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Dedicates the required time and effort consistently throughout the program cycle.</div>
+        <div class="stars-wrap" data-dim="d1">
+          <div class="star-row-ui">
+            <input type="radio" name="po2" id="po2_5" value="5"><label for="po2_5">★</label>
+            <input type="radio" name="po2" id="po2_4" value="4"><label for="po2_4">★</label>
+            <input type="radio" name="po2" id="po2_3" value="3"><label for="po2_3">★</label>
+            <input type="radio" name="po2" id="po2_2" value="2"><label for="po2_2">★</label>
+            <input type="radio" name="po2" id="po2_1" value="1"><label for="po2_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Meets agreed milestones and deliverable deadlines without repeated follow-up.</div>
+        <div class="stars-wrap" data-dim="d1">
+          <div class="star-row-ui">
+            <input type="radio" name="po3" id="po3_5" value="5"><label for="po3_5">★</label>
+            <input type="radio" name="po3" id="po3_4" value="4"><label for="po3_4">★</label>
+            <input type="radio" name="po3" id="po3_3" value="3"><label for="po3_3">★</label>
+            <input type="radio" name="po3" id="po3_2" value="2"><label for="po3_2">★</label>
+            <input type="radio" name="po3" id="po3_1" value="1"><label for="po3_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Proactively identifies and escalates risks or blockers early.</div>
+        <div class="stars-wrap" data-dim="d1">
+          <div class="star-row-ui">
+            <input type="radio" name="po4" id="po4_5" value="5"><label for="po4_5">★</label>
+            <input type="radio" name="po4" id="po4_4" value="4"><label for="po4_4">★</label>
+            <input type="radio" name="po4" id="po4_3" value="3"><label for="po4_3">★</label>
+            <input type="radio" name="po4" id="po4_2" value="2"><label for="po4_2">★</label>
+            <input type="radio" name="po4" id="po4_1" value="1"><label for="po4_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Describe an example of strong ownership — or a gap in ownership — observed during this cycle.</div>
+        <textarea class="crit-textarea" name="po_open" placeholder="Provide a specific situation and its impact on the project…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ DIMENSION 2: INNOVATION & PROBLEM-SOLVING ═══════ -->
+  <div class="dim-card" id="d2">
+    <div class="dim-head" onclick="toggleDim('d2')">
+      <div class="dim-num">02</div>
+      <div class="dim-info">
+        <div class="dim-title">Innovation &amp; Problem-Solving</div>
+        <div class="dim-sub">Creative thinking, solution quality, and idea generation</div>
+      </div>
+      <div class="dim-icon">💡</div>
+      <span class="dim-score-badge" id="badge-d2">Not rated</span>
+      <span class="dim-chevron">▼</span>
+    </div>
+    <div class="dim-body">
+
+      <div class="crit-block">
+        <div class="crit-q">Generates creative, relevant ideas that address the real business challenge.</div>
+        <div class="stars-wrap" data-dim="d2">
+          <div class="star-row-ui">
+            <input type="radio" name="in1" id="in1_5" value="5"><label for="in1_5">★</label>
+            <input type="radio" name="in1" id="in1_4" value="4"><label for="in1_4">★</label>
+            <input type="radio" name="in1" id="in1_3" value="3"><label for="in1_3">★</label>
+            <input type="radio" name="in1" id="in1_2" value="2"><label for="in1_2">★</label>
+            <input type="radio" name="in1" id="in1_1" value="1"><label for="in1_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Challenges assumptions and explores multiple solution approaches before converging.</div>
+        <div class="stars-wrap" data-dim="d2">
+          <div class="star-row-ui">
+            <input type="radio" name="in2" id="in2_5" value="5"><label for="in2_5">★</label>
+            <input type="radio" name="in2" id="in2_4" value="4"><label for="in2_4">★</label>
+            <input type="radio" name="in2" id="in2_3" value="3"><label for="in2_3">★</label>
+            <input type="radio" name="in2" id="in2_2" value="2"><label for="in2_2">★</label>
+            <input type="radio" name="in2" id="in2_1" value="1"><label for="in2_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Applies structured innovation tools and methodologies effectively (e.g. design thinking, SCAMPER).</div>
+        <div class="stars-wrap" data-dim="d2">
+          <div class="star-row-ui">
+            <input type="radio" name="in3" id="in3_5" value="5"><label for="in3_5">★</label>
+            <input type="radio" name="in3" id="in3_4" value="4"><label for="in3_4">★</label>
+            <input type="radio" name="in3" id="in3_3" value="3"><label for="in3_3">★</label>
+            <input type="radio" name="in3" id="in3_2" value="2"><label for="in3_2">★</label>
+            <input type="radio" name="in3" id="in3_1" value="1"><label for="in3_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">What was the most innovative action or insight this Champion contributed this cycle?</div>
+        <textarea class="crit-textarea" name="in_open" placeholder="Describe what they did, why it stood out, and what resulted from it…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ DIMENSION 3: COLLABORATION & ENGAGEMENT ═══════ -->
+  <div class="dim-card" id="d3">
+    <div class="dim-head" onclick="toggleDim('d3')">
+      <div class="dim-num">03</div>
+      <div class="dim-info">
+        <div class="dim-title">Collaboration &amp; Stakeholder Engagement</div>
+        <div class="dim-sub">Teamwork, cross-functional coordination, and adoption driving</div>
+      </div>
+      <div class="dim-icon">🤝</div>
+      <span class="dim-score-badge" id="badge-d3">Not rated</span>
+      <span class="dim-chevron">▼</span>
+    </div>
+    <div class="dim-body">
+
+      <div class="crit-block">
+        <div class="crit-q">Effectively engages relevant stakeholders and builds support for the project.</div>
+        <div class="stars-wrap" data-dim="d3">
+          <div class="star-row-ui">
+            <input type="radio" name="co1" id="co1_5" value="5"><label for="co1_5">★</label>
+            <input type="radio" name="co1" id="co1_4" value="4"><label for="co1_4">★</label>
+            <input type="radio" name="co1" id="co1_3" value="3"><label for="co1_3">★</label>
+            <input type="radio" name="co1" id="co1_2" value="2"><label for="co1_2">★</label>
+            <input type="radio" name="co1" id="co1_1" value="1"><label for="co1_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Drives adoption of the innovation within their department and among relevant teams.</div>
+        <div class="stars-wrap" data-dim="d3">
+          <div class="star-row-ui">
+            <input type="radio" name="co2" id="co2_5" value="5"><label for="co2_5">★</label>
+            <input type="radio" name="co2" id="co2_4" value="4"><label for="co2_4">★</label>
+            <input type="radio" name="co2" id="co2_3" value="3"><label for="co2_3">★</label>
+            <input type="radio" name="co2" id="co2_2" value="2"><label for="co2_2">★</label>
+            <input type="radio" name="co2" id="co2_1" value="1"><label for="co2_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Communicates project status clearly and keeps all relevant parties informed.</div>
+        <div class="stars-wrap" data-dim="d3">
+          <div class="star-row-ui">
+            <input type="radio" name="co3" id="co3_5" value="5"><label for="co3_5">★</label>
+            <input type="radio" name="co3" id="co3_4" value="4"><label for="co3_4">★</label>
+            <input type="radio" name="co3" id="co3_3" value="3"><label for="co3_3">★</label>
+            <input type="radio" name="co3" id="co3_2" value="2"><label for="co3_2">★</label>
+            <input type="radio" name="co3" id="co3_1" value="1"><label for="co3_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Describe a collaboration or stakeholder situation that helped or hindered the project.</div>
+        <textarea class="crit-textarea" name="co_open" placeholder="Who was involved, what happened, and what was the outcome?"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ DIMENSION 4: LEARNING & DEVELOPMENT ═══════ -->
+  <div class="dim-card" id="d4">
+    <div class="dim-head" onclick="toggleDim('d4')">
+      <div class="dim-num">04</div>
+      <div class="dim-info">
+        <div class="dim-title">Learning Agility &amp; Development</div>
+        <div class="dim-sub">Growth mindset, responsiveness to guidance, and skill-building</div>
+      </div>
+      <div class="dim-icon">🌱</div>
+      <span class="dim-score-badge" id="badge-d4">Not rated</span>
+      <span class="dim-chevron">▼</span>
+    </div>
+    <div class="dim-body">
+
+      <div class="crit-block">
+        <div class="crit-q">Actively applies guidance and support provided by the Innovation Department.</div>
+        <div class="stars-wrap" data-dim="d4">
+          <div class="star-row-ui">
+            <input type="radio" name="ld1" id="ld1_5" value="5"><label for="ld1_5">★</label>
+            <input type="radio" name="ld1" id="ld1_4" value="4"><label for="ld1_4">★</label>
+            <input type="radio" name="ld1" id="ld1_3" value="3"><label for="ld1_3">★</label>
+            <input type="radio" name="ld1" id="ld1_2" value="2"><label for="ld1_2">★</label>
+            <input type="radio" name="ld1" id="ld1_1" value="1"><label for="ld1_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Demonstrates visible growth in innovation mindset and capability across the cycle.</div>
+        <div class="stars-wrap" data-dim="d4">
+          <div class="star-row-ui">
+            <input type="radio" name="ld2" id="ld2_5" value="5"><label for="ld2_5">★</label>
+            <input type="radio" name="ld2" id="ld2_4" value="4"><label for="ld2_4">★</label>
+            <input type="radio" name="ld2" id="ld2_3" value="3"><label for="ld2_3">★</label>
+            <input type="radio" name="ld2" id="ld2_2" value="2"><label for="ld2_2">★</label>
+            <input type="radio" name="ld2" id="ld2_1" value="1"><label for="ld2_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">Reflects on failures and pivots constructively rather than repeating the same mistakes.</div>
+        <div class="stars-wrap" data-dim="d4">
+          <div class="star-row-ui">
+            <input type="radio" name="ld3" id="ld3_5" value="5"><label for="ld3_5">★</label>
+            <input type="radio" name="ld3" id="ld3_4" value="4"><label for="ld3_4">★</label>
+            <input type="radio" name="ld3" id="ld3_3" value="3"><label for="ld3_3">★</label>
+            <input type="radio" name="ld3" id="ld3_2" value="2"><label for="ld3_2">★</label>
+            <input type="radio" name="ld3" id="ld3_1" value="1"><label for="ld3_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">What development support should be provided to this Champion in the next cycle?</div>
+        <div class="crit-note">Consider: training, mentorship, role clarification, resource access, or process improvements.</div>
+        <textarea class="crit-textarea" name="ld_open" placeholder="What would most help this Champion grow in the next cycle?"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════ DIMENSION 5: PROJECT IMPACT & RESULTS ═══════ -->
+  <div class="dim-card" id="d5">
+    <div class="dim-head" onclick="toggleDim('d5')">
+      <div class="dim-num">05</div>
+      <div class="dim-info">
+        <div class="dim-title">Project Impact &amp; Results</div>
+        <div class="dim-sub">Measurable outcomes, value delivered, and progress against goals</div>
+      </div>
+      <div class="dim-icon">🏆</div>
+      <span class="dim-score-badge" id="badge-d5">Not rated</span>
+      <span class="dim-chevron">▼</span>
+    </div>
+    <div class="dim-body">
+
+      <div class="crit-block">
+        <div class="crit-q">The project has made measurable progress toward its defined success criteria.</div>
+        <div class="stars-wrap" data-dim="d5">
+          <div class="star-row-ui">
+            <input type="radio" name="ir1" id="ir1_5" value="5"><label for="ir1_5">★</label>
+            <input type="radio" name="ir1" id="ir1_4" value="4"><label for="ir1_4">★</label>
+            <input type="radio" name="ir1" id="ir1_3" value="3"><label for="ir1_3">★</label>
+            <input type="radio" name="ir1" id="ir1_2" value="2"><label for="ir1_2">★</label>
+            <input type="radio" name="ir1" id="ir1_1" value="1"><label for="ir1_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">The Champion effectively captured and articulated a real, validated business challenge.</div>
+        <div class="stars-wrap" data-dim="d5">
+          <div class="star-row-ui">
+            <input type="radio" name="ir2" id="ir2_5" value="5"><label for="ir2_5">★</label>
+            <input type="radio" name="ir2" id="ir2_4" value="4"><label for="ir2_4">★</label>
+            <input type="radio" name="ir2" id="ir2_3" value="3"><label for="ir2_3">★</label>
+            <input type="radio" name="ir2" id="ir2_2" value="2"><label for="ir2_2">★</label>
+            <input type="radio" name="ir2" id="ir2_1" value="1"><label for="ir2_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">The project is on track to deliver practical, scalable value to the organization.</div>
+        <div class="stars-wrap" data-dim="d5">
+          <div class="star-row-ui">
+            <input type="radio" name="ir3" id="ir3_5" value="5"><label for="ir3_5">★</label>
+            <input type="radio" name="ir3" id="ir3_4" value="4"><label for="ir3_4">★</label>
+            <input type="radio" name="ir3" id="ir3_3" value="3"><label for="ir3_3">★</label>
+            <input type="radio" name="ir3" id="ir3_2" value="2"><label for="ir3_2">★</label>
+            <input type="radio" name="ir3" id="ir3_1" value="1"><label for="ir3_1">★</label>
+          </div>
+          <div class="star-scale-lbl"><span>Needs Improvement</span><span>Outstanding</span></div>
+        </div>
+      </div>
+
+      <div class="crit-block">
+        <div class="crit-q">What obstacles have impacted results, and how should they be addressed going forward?</div>
+        <textarea class="crit-textarea" name="ir_open" placeholder="Resource gaps, organizational barriers, dependency issues…"></textarea>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ OVERALL RATING ══ -->
+  <div class="overall-card">
+    <div class="overall-title">Overall Champion Rating</div>
+    <div class="overall-sub">Based on your complete evaluation, how would you rate this Champion's overall performance during this cycle?</div>
+    <div class="overall-btns" id="overallBtns">
+      <button type="button" class="o-btn" data-v="1" onclick="setOverall(1)"><span class="star-ico">★</span> 1 — Needs Significant Improvement</button>
+      <button type="button" class="o-btn" data-v="2" onclick="setOverall(2)"><span class="star-ico">★★</span> 2 — Below Expectations</button>
+      <button type="button" class="o-btn" data-v="3" onclick="setOverall(3)"><span class="star-ico">★★★</span> 3 — Meets Expectations</button>
+      <button type="button" class="o-btn" data-v="4" onclick="setOverall(4)"><span class="star-ico">★★★★</span> 4 — Exceeds Expectations</button>
+      <button type="button" class="o-btn" data-v="5" onclick="setOverall(5)"><span class="star-ico">★★★★★</span> 5 — Outstanding Champion</button>
+    </div>
+  </div>
+
+  <!-- ══ OPEN FEEDBACK ══ -->
+  <div class="open-card">
+    <div class="open-card-title">Open Feedback</div>
+    <div class="open-qs">
+      <div>
+        <div class="open-q-lbl">What are this Champion's top 2–3 strengths that the program should recognize and build upon?</div>
+        <textarea class="crit-textarea" name="open_strengths" placeholder="Be specific — what do they do exceptionally well in the context of this project?"></textarea>
+      </div>
+      <div>
+        <div class="open-q-lbl">What are the top 2–3 areas where this Champion needs the most improvement?</div>
+        <div class="crit-note" style="margin-top:0;margin-bottom:0.7rem">Include both your own perspective and what you believe their manager or colleagues would say.</div>
+        <textarea class="crit-textarea" name="open_improve" placeholder="What specific behaviors or outcomes need to change to increase project effectiveness?"></textarea>
+      </div>
+      <div>
+        <div class="open-q-lbl">Would you recommend this Champion for a future innovation cycle? Why or why not?</div>
+        <textarea class="crit-textarea" name="open_recommend" placeholder="Share your reasoning…"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SUBMIT ══ -->
+  <div class="submit-zone">
+    <p class="submit-note">
+      <strong>Confidential Evaluation.</strong> Your responses are compiled into the Champion's 180° development report, accessible only to the Innovation Department and the Champion's HR partner. Individual evaluations are never shared directly.
+    </p>
+    <button type="button" class="submit-btn" onclick="submitForm()">
+      Submit Evaluation <span>→</span>
+    </button>
+  </div>
+
+</form>
+
+<!-- SUCCESS -->
+<div class="success" id="successScreen">
+  <div class="success-orb">✦</div>
+  <div class="success-title">Evaluation Submitted</div>
+  <p class="success-msg">Thank you for completing this Innovation Champion evaluation. Your structured feedback will be used to generate the 180° development report, highlight areas for growth, and strengthen the next cycle of the program.</p>
+</div>
+
+</div><!-- /form-wrap -->
+
+<script>
+// Role switcher
+function setEval(btn, role) {
+  document.querySelectorAll('.eval-pill').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// Dimension toggle
+function toggleDim(id) {
+  const card = document.getElementById(id);
+  const isOpen = card.classList.toggle('open');
+  card.querySelector('.dim-chevron').textContent = isOpen ? '▲' : '▼';
+}
+
+// Overall rating
+let overallVal = null;
+function setOverall(v) {
+  overallVal = v;
+  document.querySelectorAll('.o-btn').forEach(b =>
+    b.classList.toggle('sel', parseInt(b.dataset.v) === v)
+  );
+}
+
+// Progress tracking — track dims with at least one star rated
+const ratedDims = new Set();
+const dimNames = ['d1','d2','d3','d4','d5'];
+
+document.querySelectorAll('.stars-wrap input[type="radio"]').forEach(input => {
+  input.addEventListener('change', () => {
+    const wrap = input.closest('.stars-wrap');
+    const dim = wrap ? wrap.dataset.dim : null;
+    if (dim) {
+      ratedDims.add(dim);
+      updateBadge(dim);
+      updateProgress();
+    }
+  });
+});
+
+function updateBadge(dim) {
+  const card = document.getElementById(dim);
+  const inputs = card.querySelectorAll('input[type="radio"]:checked');
+  if (inputs.length === 0) return;
+  const vals = Array.from(inputs).map(i => parseInt(i.value));
+  const avg = vals.reduce((a,b) => a+b, 0) / vals.length;
+  const badge = document.getElementById('badge-' + dim);
+  const stars = '★'.repeat(Math.round(avg)) + '☆'.repeat(5 - Math.round(avg));
+  badge.textContent = avg.toFixed(1) + ' ' + stars;
+  badge.style.background = 'rgba(123,47,247,0.25)';
+  badge.style.borderColor = 'rgba(139,92,246,0.6)';
+  badge.style.color = '#c4b5fd';
+}
+
+function updateProgress() {
+  const n = ratedDims.size;
+  document.getElementById('progFill').style.width = Math.round((n/5)*100) + '%';
+  document.getElementById('progTxt').textContent = n + ' / 5 dimensions rated';
+}
+
+// ── CONFIGURATION ──────────────────────────────────────────
+// STEP: Paste your Google Apps Script Web App URL here
+const SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzi5gX1XqvB9Kjx9QRZhaAxFwEa_vRA_ugRc3_NMrvADdLJg8cskB04tNfmepU5fiXT/exec';
+// ───────────────────────────────────────────────────────────
+
+// Submit
+async function submitForm() {
+  const champ   = document.getElementById('f_champ').value.trim();
+  const evalName = document.getElementById('f_evaluator').value.trim();
+
+  // Validate required fields
+  if (!champ || !evalName) {
+    const target = !champ ? 'f_champ' : 'f_evaluator';
+    const el = document.getElementById(target);
+    el.focus();
+    el.style.borderColor = '#e879f9';
+    el.style.boxShadow = '0 0 0 3px rgba(232,121,249,0.2)';
+    setTimeout(() => { el.style.borderColor = ''; el.style.boxShadow = ''; }, 2200);
+    return;
+  }
+
+  // Show loading state on button
+  const btn = document.querySelector('.submit-btn');
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<span style="opacity:0.7">Submitting…</span> <span style="animation:spin 1s linear infinite;display:inline-block">⟳</span>';
+  btn.disabled = true;
+  btn.style.opacity = '0.75';
+
+  // Collect all form data
+  const getVal = name => {
+    const el = document.querySelector(`[name="${name}"]`);
+    if (!el) return '';
+    if (el.type === 'radio') {
+      const checked = document.querySelector(`[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+    return el.value || '';
+  };
+  const getRadio = name => {
+    const checked = document.querySelector(`input[name="${name}"]:checked`);
+    return checked ? checked.value : '';
+  };
+
+  const evaluatorRole = document.querySelector('.eval-pill.active')?.textContent?.trim() || '';
+
+  const payload = {
+    timestamp:        new Date().toISOString(),
+    evaluator_role:   evaluatorRole,
+    champion_name:    champ,
+    evaluator_name:   evalName,
+    department:       document.getElementById('f_dept').value.trim(),
+    project_name:     document.getElementById('f_project').value.trim(),
+    cycle:            document.getElementById('f_cycle').value,
+    project_stage:    document.getElementById('f_stage').value,
+
+    // Dimension 1 — Ownership
+    d1_ownership_q1:  getRadio('po1'),
+    d1_ownership_q2:  getRadio('po2'),
+    d1_ownership_q3:  getRadio('po3'),
+    d1_ownership_q4:  getRadio('po4'),
+    d1_open:          getVal('po_open'),
+
+    // Dimension 2 — Innovation
+    d2_innovation_q1: getRadio('in1'),
+    d2_innovation_q2: getRadio('in2'),
+    d2_innovation_q3: getRadio('in3'),
+    d2_open:          getVal('in_open'),
+
+    // Dimension 3 — Collaboration
+    d3_collab_q1:     getRadio('co1'),
+    d3_collab_q2:     getRadio('co2'),
+    d3_collab_q3:     getRadio('co3'),
+    d3_open:          getVal('co_open'),
+
+    // Dimension 4 — Learning
+    d4_learning_q1:   getRadio('ld1'),
+    d4_learning_q2:   getRadio('ld2'),
+    d4_learning_q3:   getRadio('ld3'),
+    d4_open:          getVal('ld_open'),
+
+    // Dimension 5 — Impact
+    d5_impact_q1:     getRadio('ir1'),
+    d5_impact_q2:     getRadio('ir2'),
+    d5_impact_q3:     getRadio('ir3'),
+    d5_open:          getVal('ir_open'),
+
+    // Overall & open
+    overall_rating:   overallVal || '',
+    open_strengths:   getVal('open_strengths'),
+    open_improve:     getVal('open_improve'),
+    open_recommend:   getVal('open_recommend'),
+  };
+
+  try {
+    if (!SHEET_WEBHOOK_URL || SHEET_WEBHOOK_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+      throw new Error('DEMO_MODE');
+    }
+    await fetch(SHEET_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    showSuccess();
+  } catch(err) {
+    if (err.message === 'DEMO_MODE') {
+      // In demo mode — show success and log data to console
+      console.table(payload);
+      showSuccess();
+    } else {
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      btn.style.opacity = '';
+      showError();
+    }
+  }
+}
+
+function showSuccess() {
+  document.getElementById('mainForm').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function showError() {
+  const zone = document.querySelector('.submit-zone');
+  let errMsg = document.getElementById('submitError');
+  if (!errMsg) {
+    errMsg = document.createElement('p');
+    errMsg.id = 'submitError';
+    errMsg.style.cssText = 'color:#f87171;font-size:0.8rem;margin-top:0.75rem;width:100%;font-weight:600';
+    zone.appendChild(errMsg);
+  }
+  errMsg.textContent = '⚠ Submission failed. Please check your connection and try again.';
+  const btn = document.querySelector('.submit-btn');
+  btn.innerHTML = 'Submit Evaluation <span>→</span>';
+  btn.disabled = false;
+  btn.style.opacity = '';
+}
+
+// Spin keyframe for loading icon
+const styleTag = document.createElement('style');
+styleTag.textContent = '@keyframes spin { to { transform: rotate(360deg); } }';
+document.head.appendChild(styleTag);
+</script>
+</body>
+</html>
